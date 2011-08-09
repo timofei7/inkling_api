@@ -6,8 +6,8 @@ Gem::Specification.new do |s|
   s.name        = "inkling_api"
   s.version     = InklingApi::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["David Chapman"]
-  s.email       = ["david@isotope11.com"]
+  s.authors     = ["David Chapman", "Nick Fine", "Josh Adams"]
+  s.email       = ["david@isotope11.com", "nick@isotope11.com", "josh@isotope11.com"]
   s.homepage    = "http://www.isotope11.com/"
   s.summary     = %q{Gem to interact with inkling markets API}
 

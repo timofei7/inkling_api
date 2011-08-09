@@ -1,7 +1,7 @@
 require 'faraday_stack'
-require 'faraday_middlewares'
+require 'inkling_api/faraday_middlewares'
 require 'hashie/mash'
-require 'activesupport_yaml_hack'
+require 'inkling_api/activesupport_yaml_hack'
 
 module InklingApi
   module Configuration

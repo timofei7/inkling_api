@@ -3,3 +3,5 @@
 Gemfile.lock
 pkg/*
 lib/inkling_api_test_config.rb
+.rvmrc
+bin/httparty

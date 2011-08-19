@@ -174,6 +174,10 @@ module InklingApi
       get("memberships/#{member_id}.xml", *args)
     end
 
+    def me # Get's membership of current logged in user
+      get("memberships/me.xml")
+    end
+
     def create_membership(login, email, password, first_name, last_name)
       membership_data = { :'login' => login,
                           :'password' => password,

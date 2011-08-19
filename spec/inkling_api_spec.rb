@@ -79,6 +79,10 @@ describe InklingApi do
     inkling_api.membership(member_id).should be_a(Hash)
   end
 
+  it "should get the membership of the logged in user" do
+    inkling_api.me.should be_a(Hash)
+  end
+
   it "should create a membership" do
     login = "foo_bar#{Time.now.utc.to_i.to_s}"
     email = "foo#{Time.now.utc.to_i.to_s}@bar.com"

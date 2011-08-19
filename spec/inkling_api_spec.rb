@@ -87,8 +87,8 @@ describe InklingApi do
 
   it "should update a membership" do
     membership_id = 210665
-    first_name = "Pamela"
-    last_name = "Fetterolf"
+    first_name = "Sports"
+    last_name = "Intel"
     # NOTE: This will raise a <Faraday::Error::ParsingError> because it expects XML to be returned
     # However, Inkling Markets returns nothing when updating existing memberships
     # lambda do

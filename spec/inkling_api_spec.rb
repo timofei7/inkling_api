@@ -15,7 +15,10 @@ describe InklingApi do
   end
 
   %w( configure connection get post put delete markets market new_market
-      update_market delete_market publish_market).each do |meth|
+      update_market delete_market publish_market memberships membership
+      create_membership update_membership update_balance delete_membership
+      prices positions answer create_answer update_answer delete_answer cash_out
+      create_refund).each do |meth|
     it "should respond to #{meth}" do
       inkling_api.should respond_to(meth.to_sym)
     end
@@ -118,5 +121,80 @@ describe InklingApi do
     # lambda do
     #  inkling_api.update_balance(balance_value, membership_id)
     # end.should_not raise_error
+  end
+
+  it "should get a list of prices" do
+    inkling_api.prices.should be_a(Hash)
+  end
+
+  it "should get a list of positions" do
+    inkling_api.positions.should be_a(Hash)
+  end
+
+  it "should get a list of possbile answers" do
+    stock_id = 145841
+    inkling_api.answer(stock_id)
+  end
+
+  it "should create a new answer for a market" do
+    market_id = 37810
+    answer = "Yes"
+    symbol = "YES"
+    inkling_api.create_answer(answer, symbol, market_id)
+  end
+
+  it "should update an answer" do
+    stock_id = 145841
+    symbol = "ALABA"
+    starting_price = 5000
+    answer = "Alabama"
+    # NOTE: This will raise a <Faraday::Error::ParsingError> because it expects XML to be returned
+    # However, Inkling Markets returns nothing when updating a possible answer
+    # lambda do
+    #  inkling_api.update_answer(stock_id, answer, symbol, starting_price)
+    # end.should_not raise_error
+  end
+
+  it "should delete an answer" do
+    stock_id = 147220
+    # NOTE: This will rise a <Farada::Error::ParsingError> because it expects XML to be returned
+    # However, Inkling Markets returns nothing when deleting a possible answer
+    # lambda do
+    #   inkling_api.delete_answer(stock_id)
+    # end.should_not raise_error
+  end
+
+  it "should cash out on a possible answer" do
+    stock_id = 147219
+    inkling_api.cash_out(stock_id).should be_a(Hash)
+  end
+
+  it "should create a refund on a possible answer" do
+    stock_id = 144196
+    lambda do
+      inkling_api.create_refund(stock_id)
+    end.should_not raise_error
+  end
+
+  it "should get a list of all trades" do
+    inkling_api.trades.should be_a(Hash)
+  end
+
+  it "should create a trade for a possible answer" do
+    stock_id = 147223
+    membership_id = 210690
+    quantity = 2
+    lambda do
+      inkling_api.create_trade(stock_id, membership_id, quantity)
+    end.should_not raise_error
+  end
+
+  it "should create a quote for a possible answer" do
+    stock_id = 147223
+    membership_id = 210690
+    quantity = 2
+    lambda do
+      inkling_api.quote(stock_id, membership_id, quantity)
+    end.should_not raise_error
   end
 end

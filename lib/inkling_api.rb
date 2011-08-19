@@ -93,6 +93,10 @@ module InklingApi
     def publish(path, params = nil)
       connection.post(path)
     end
+
+    def refund(path, params = nil)
+      connection.post(path)
+    end
   end
 
   module ApiMethods
@@ -117,13 +121,19 @@ module InklingApi
     def delete(path, params = nil)
       raw = params && params.delete(:raw)
       response = super
-      raw ? response.enc[:raw_body] : response.body
+      raw ? response.env[:raw_body] : response.body
     end
 
     def publish(path, params = nil)
       raw = params && params.delete(:raw)
       response = super
-      raw ? response.enc[:raw_body] : response.body
+      raw ? response.env[:raw_body] : response.body
+    end
+
+    def refund(path, params = nil)
+      raw = params && params.delete(:raw)
+      response = super
+      raw ? response.env[:raw_body] : response.body
     end
 
     def market(market_id, *args)
@@ -186,6 +196,64 @@ module InklingApi
 
     def delete_membership(membership_id)
       delete("memberships/#{membership_id}.xml", :content_type => 'application/xml')
+    end
+
+    def prices(*args)
+      get("prices.xml", *args)
+    end
+
+    def positions
+      get("positions.xml")
+    end
+
+    def create_answer(answer, symbol, market_id)
+      answer_data = { :'name' => answer,
+                      :'symbol' => symbol
+      }
+      post("markets/#{market_id}/stocks.xml", answer_data.to_xml(:root => "stock"), :content_type => 'application/xml')
+    end
+
+    def answer(stock_id)
+      get("stocks/#{stock_id}.xml")
+    end
+
+    def update_answer(stock_id, answer, symbol, starting_price)
+      answer_data = { :'name' => answer,
+                      :'symbol' => symbol,
+                      :'starting-price' => starting_price
+      }
+      put("stocks/#{stock_id}.xml", answer_data.to_xml(:root => "stock"), :content_type => 'application/xml')
+    end
+
+    def delete_answer(stock_id)
+      delete("stocks/#{stock_id}.xml")
+    end
+
+    def cash_out(stock_id, price = 0)
+      cash_out_data = { :'price' => price }
+      post("stocks/#{stock_id}/resolutions.xml", cash_out_data.to_xml(:root => "resolution"), :content_type => 'application/xml')
+    end
+
+    def create_refund(stock_id)
+      refund("stocks/#{stock_id}/refunds.xml")
+    end
+
+    def trades
+      get("memberships/all/trades.xml")
+    end
+
+    def create_trade(stock_id, membership_id, quantity)
+      trade_data = { :'quantity' => quantity,
+                     :'membership_id' => membership_id
+      }
+      post("stocks/#{stock_id}/trades.xml", trade_data.to_xml(:root => "trade"), :content_type => 'application/xml')
+    end
+
+    def quote(stock_id, membership_id, quantity)
+      quote_data = { :'quantity' => quantity,
+                     :'membership_id' => membership_id
+      }
+      post("stocks/#{stock_id}/trades/quote.xml", quote_data.to_xml(:root => "trade"), :content_type => 'application/xml')
     end
 
   end

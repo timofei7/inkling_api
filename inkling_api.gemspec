@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency('faraday', '~> 0.7.4')
   s.add_dependency('faraday-stack', '~> 0.1.3')
   s.add_dependency('hashie', '~> 1.1.0')
-  s.add_dependency('activesupport', '~> 3.0.9')
+  s.add_dependency('activesupport', '~> 3.1.0.rc5')
   s.add_dependency('i18n', '~> 0.6.0')
   s.add_dependency('builder', '~> 3.0.0')
 

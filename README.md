@@ -9,7 +9,7 @@ create a file in lib/inkling_api_test_config.rb that looks like the following
     module InklingApiTestConfig
       class << self
         def url
-          "https://url.inklingmarkets.com"
+          "http://url.inklingmarkets.com"
         end
 
         def login

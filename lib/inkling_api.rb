@@ -202,6 +202,10 @@ module InklingApi
       delete("memberships/#{membership_id}.xml", :content_type => 'application/xml')
     end
 
+    def get_token_for(membership_id)
+      get("memberships/#{membership_id}/tokens.xml")
+    end
+
     def prices(*args)
       get("prices.xml", *args)
     end

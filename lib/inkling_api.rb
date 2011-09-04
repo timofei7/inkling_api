@@ -203,7 +203,7 @@ module InklingApi
     end
 
     def get_token_for(membership_id)
-      get("memberships/#{membership_id}/tokens.xml")
+      post("memberships/#{membership_id}/tokens.xml", '', :content_type => 'application.xml')
     end
 
     def prices(*args)

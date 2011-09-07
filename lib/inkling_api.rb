@@ -210,8 +210,8 @@ module InklingApi
       get("prices.xml", *args)
     end
 
-    def positions
-      get("positions.xml")
+    def positions(membership_id)
+      get("memberships/#{membership_id}/trades.xml")
     end
 
     def create_answer(answer, symbol, market_id)

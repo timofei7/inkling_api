@@ -201,4 +201,9 @@ describe InklingApi do
       inkling_api.quote(stock_id, membership_id, quantity)
     end.should_not raise_error
   end
+
+  it "should get a list of comments" do
+    market_id = 38118
+    inkling_api.comments(market_id).should be_a(Array)
+  end
 end

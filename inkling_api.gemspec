@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.email       = ["david@isotope11.com", "nick@isotope11.com", "josh@isotope11.com"]
   s.homepage    = "http://www.isotope11.com/"
   s.summary     = %q{Gem to interact with inkling markets API}
+  s.description = %q{Gem to interact with inkling markets API}
 
   s.rubyforge_project = "inkling_api"
 

@@ -141,7 +141,7 @@ module InklingApi
     end
 
     def markets(*args)
-      get("markets.json", *args)
+      get("markets.xml", *args)
     end
 
     def new_market(question, class_type, ends_at, tag_list)
@@ -262,6 +262,16 @@ module InklingApi
                      :'membership_id' => membership_id
       }
       post("stocks/#{stock_id}/trades/quote.xml", quote_data.to_xml(:root => "trade"), :content_type => 'application/xml')
+    end
+
+    def comments(market_id)
+      trades = get("/markets/#{market_id}/trades.xml")["trades"]
+      ugly_comments = trades.select!{ |t| !t["reason"].nil? }
+      pretty_comments = Array.new
+      ugly_comments.each do |c|
+        pretty_comments << { c["membership"]["id"] => c["reason"] }
+      end
+      pretty_comments
     end
 
   end

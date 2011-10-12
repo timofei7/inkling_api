@@ -266,12 +266,12 @@ module InklingApi
 
     def comments(market_id)
       trades = get("/markets/#{market_id}/trades.xml")["trades"]
-      ugly_comments = trades.select!{ |t| !t["reason"].nil? }
+      ugly_comments = trades.select{ |t| !t["reason"].nil? }
       pretty_comments = Array.new
+      ugly_comments = [] if ugly_comments.nil?
       ugly_comments.each do |c|
         pretty_comments << { c["membership"]["id"] => c["reason"] }
       end
-      pretty_comments
     end
 
   end

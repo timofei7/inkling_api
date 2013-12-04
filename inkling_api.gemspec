@@ -5,7 +5,6 @@ require "inkling_api/version"
 Gem::Specification.new do |s|
   s.name        = "inkling_api"
   s.version     = InklingApi::VERSION
-  s.platform    = Gem::Platform::RUBY
   s.authors     = ["David Chapman", "Nick Fine", "Josh Adams", "Tim Tregubov"]
   s.email       = ["david@isotope11.com", "nick@isotope11.com", "josh@isotope11.com", "tim@zingweb.com"]
   s.homepage    = "http://www.isotope11.com/"

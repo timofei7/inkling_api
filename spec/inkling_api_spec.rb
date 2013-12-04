@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'debugger'
 require 'inkling_api_test_config'
 
 describe InklingApi do

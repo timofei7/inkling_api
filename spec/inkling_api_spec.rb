@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'ruby-debug'
+require 'debugger'
 require 'inkling_api_test_config'
 
 describe InklingApi do

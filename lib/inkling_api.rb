@@ -2,7 +2,7 @@ require 'faraday_stack'
 require 'inkling_api/faraday_middlewares'
 require 'hashie/mash'
 require 'inkling_api/activesupport_yaml_hack'
-require 'ruby-debug'
+require 'debugger'
 
 module InklingApi
   module Configuration

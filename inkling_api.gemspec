@@ -30,5 +30,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency('rspec-core')
   s.add_development_dependency('json_spec')
   s.add_development_dependency('shoulda')
-  #s.add_development_dependency('ruby-debug')
+  s.add_development_dependency('debugger')
 end
